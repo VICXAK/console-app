@@ -93,3 +93,21 @@ function detectPersonalLevel() {
   }
 }
 detectPersonalLevel();
+
+
+/* Check property privat */
+function showMyDB(hidden) {
+  if (!hidden) {
+    console.log(personalMovieDB);
+  }
+}
+showMyDB(personalMovieDB.privat);
+
+/* Create function writeYourGenres */
+
+function writeYourGenres() {
+  for (let i = 1; i <= 3; i++) {
+    personalMovieDB.genres[i - 1] = prompt(`Ваш любимый жанр под номером ${i}`, 'horror');
+  }
+}
+writeYourGenres();
