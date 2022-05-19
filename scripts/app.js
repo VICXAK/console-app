@@ -1,5 +1,16 @@
 /* Create variable numberOfFilms */
-let numberOfFilms = +prompt('Сколько фильмов вы уже посмотрели?', '');
+let numberOfFilms;
+
+/*  Add functions  */
+function start() {
+   numberOfFilms = +prompt('Сколько фильмов вы уже посмотрели?', '');
+
+   while (numberOfFilms == '' || numberOfFilms == null || isNaN(numberOfFilms)) {
+    numberOfFilms = +prompt('Сколько фильмов вы уже посмотрели?', '');
+   }
+}
+
+start();
 
 // /* Object personalMovieDB */
 
@@ -17,20 +28,22 @@ const personalMovieDB = {
 //     c = prompt('Один из последний просмотренных фильмов?', ''),
 //     d = prompt('На сколько оцените его?', '5');
 
-/* Loop question */
 
-for (let i = 0; i < 2; i++) {
-   const lastViewed = prompt('Один из последний просмотренных фильмов?', '');
-   const rate = prompt('На сколько оцените его?', '');
-  if (lastViewed !== '' && rate !== '' && lastViewed !== null && rate !== null && lastViewed.length <= 50) {
-    personalMovieDB.movies[lastViewed] = rate;
-    console.log('done');
-  }
-  else {
-    console.log('error');
-    i--;
+/* Function for loop */
+function rememberMyFilms() {
+  for (let i = 0; i < 2; i++) {
+    const lastViewed = prompt('Один из последний просмотренных фильмов?', '');
+    const rate = prompt('На сколько оцените его?', '');
+    if (lastViewed !== '' && rate !== '' && lastViewed !== null && rate !== null && lastViewed.length <= 50) {
+      personalMovieDB.movies[lastViewed] = rate;
+      console.log('done');
+    } else {
+      console.log('error');
+      i--;
+    }
   }
 }
+rememberMyFilms();
 /*------------------------------- Loop with do {} while()----------------- */
 // let i = 0;
 // do {
@@ -66,14 +79,17 @@ for (let i = 0; i < 2; i++) {
 // }
 
 // Condition with answer for users
-if (personalMovieDB.count < 10) {
-  alert('Просмотрено довольно мало фильмов');
-} else if (personalMovieDB.count >= 10 && personalMovieDB.count < 30) {
-  alert('Вы классический зритель!');
-} else if (personalMovieDB.count >= 30) {
-  alert('Вы киноман!');
-} else {
-  alert('Error');
-}
 
-console.log(personalMovieDB);
+
+function detectPersonalLevel() {
+  if (personalMovieDB.count < 10) {
+    alert('Просмотрено довольно мало фильмов');
+  } else if (personalMovieDB.count >= 10 && personalMovieDB.count < 30) {
+    alert('Вы классический зритель!');
+  } else if (personalMovieDB.count >= 30) {
+    alert('Вы киноман!');
+  } else {
+    alert('Error');
+  }
+}
+detectPersonalLevel();
