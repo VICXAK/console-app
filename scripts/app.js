@@ -1,3 +1,4 @@
+'use strict';
 /* Create variable numberOfFilms */
 // let numberOfFilms;
 
@@ -15,19 +16,17 @@
 // /* Object personalMovieDB */
 
 const personalMovieDB = {
-  count: null,
+  count: 0,
   movies: {},
   actors: {},
   genres: [],
   privat: false,
   start: function() {
-  let numberOfFilms = +prompt('Сколько фильмов вы уже посмотрели?', '');
+  personalMovieDB.count = +prompt('Сколько фильмов вы уже посмотрели?', '');
 
-     while (numberOfFilms == '' || numberOfFilms == null || isNaN(numberOfFilms)) {
-       numberOfFilms = +prompt('Сколько фильмов вы уже посмотрели?', '');
+     while (personalMovieDB.count == '' || personalMovieDB.count == null || isNaN(personalMovieDB.count)) {
+       personalMovieDB.count = +prompt('Сколько фильмов вы уже посмотрели?', '');
      }
-     personalMovieDB.count = numberOfFilms;
-     return numberOfFilms;
   },
   rememberMyFilms: function() {
     for (let i = 0; i < 2; i++) {
@@ -54,26 +53,26 @@ const personalMovieDB = {
      }
   },
   showMyDB: function(hidden) {
-     if (hidden) {
+     if (!hidden) {
        console.log(personalMovieDB);
      }
   },
   toggleVisibleMyDB: function() {
-    if (!personalMovieDB.privat) {
-      personalMovieDB.privat = true;
+    if (personalMovieDB.privat) {
+      personalMovieDB.privat = false;
     }
     else {
-      personalMovieDB.privat = false;
+      personalMovieDB.privat = true;
     }
   },
   writeYourGenres: function() {
     for (let i = 1; i <= 3; i++) {
      let getGenres = prompt(`Ваш любимый жанр под номером ${i}`, '');
-      if (getGenres !== null && getGenres !== '') {
-        personalMovieDB.genres[i - 1] = getGenres;
+      if (getGenres === null || getGenres === '') {
+        i--;
       }
       else {
-        i--;
+        personalMovieDB.genres[i - 1] = getGenres;
       }
     }
   },
@@ -91,33 +90,3 @@ personalMovieDB.showMyDB(personalMovieDB.privat);
 personalMovieDB.writeYourGenres(); 
 personalMovieDB.displayMsg(personalMovieDB.genres);
 
-
-// console.log(personalMovieDB);
-
-
-
-
-
-
-
-
-// // Condition with answer for users
-
-
-
-// /* Check property privat */
-// function showMyDB(hidden) {
-//   if (!hidden) {
-//     console.log(personalMovieDB);
-//   }
-// }
-// showMyDB(personalMovieDB.privat);
-
-// /* Create function writeYourGenres */
-
-// function writeYourGenres() {
-//   for (let i = 1; i <= 3; i++) {
-//     personalMovieDB.genres[i - 1] = prompt(`Ваш любимый жанр под номером ${i}`, 'horror');
-//   }
-// }
-// writeYourGenres();
